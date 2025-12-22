@@ -1,18 +1,36 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
+import { Layout } from "../components/Layout";
+import HomeScreen from "../screens/Home";
+import ShopScreen from "../screens/Shop";
+import AboutScreen from "../screens/About";
+import CheckoutScreen from "../screens/Checkout";
+import ThemeScreen  from "../screens/Theme";
 
-let router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
-    Component: Root,
+    Component: Layout,
     children: [
       {
-        path: "shows/:showId",
-        Component: Show,
-        loader: ({ request, params }) =>
-          fetch(`/api/show/${params.showId}.json`, {
-            signal: request.signal,
-          }),
+        index: true,
+        Component: HomeScreen,
       },
-    ],
-  },
+      {
+        path: "shop",
+        Component: ShopScreen,
+      },
+      {
+        path: "about",
+        Component: AboutScreen,
+      },
+      {
+        path: "checkout",
+        Component: CheckoutScreen,
+      },
+      {
+        path: "theme",  
+        Component: ThemeScreen,
+      }
+    ]
+  }
 ]);
