@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { HeroCarousel } from '../components/HeroCarousel';
 import { ProductCard } from '../components/ProductCard';
 import { ProductDetail } from '../components/ProductDetail';
+import { ApiTest } from '../components/ApiTest';
 import { products } from '../../data/products';
 import { Product } from '../../types/types';
 import { toast } from "sonner"
@@ -58,6 +59,13 @@ export default function HomeScreen() {
           onShopClick={() => navigate('shop')}
         />
         
+      </section>
+
+      {/* API Integration Test */}
+      <section className="py-8 px-4 bg-muted/20">
+        <div className="max-w-6xl mx-auto">
+          <ApiTest />
+        </div>
       </section>
 
       {/* Featured Products */}
