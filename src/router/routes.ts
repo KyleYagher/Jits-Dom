@@ -5,6 +5,8 @@ import ShopScreen from "../screens/Shop";
 import AboutScreen from "../screens/About";
 import CheckoutScreen from "../screens/Checkout";
 import ThemeScreen  from "../screens/Theme";
+import { LoginPage } from "../screens/Login";
+import { UserProfile } from "../screens/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -28,8 +30,16 @@ export const router = createBrowserRouter([
         Component: CheckoutScreen,
       },
       {
-        path: "theme",  
+        path: "theme",
         Component: ThemeScreen,
+      },
+      {
+        path: "profile",
+        Component: UserProfile,
+      },
+      {
+        path: "login",
+        Component: LoginPage,
       }
     ]
   }

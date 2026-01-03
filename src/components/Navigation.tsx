@@ -1,8 +1,19 @@
-import { ShoppingCart, Menu, X } from 'lucide-react';
+import { ShoppingCart, Menu, X, User, LogOut } from 'lucide-react';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/useCart';
+import { useAuth } from '../../context/useAuth';
 import { ThemeToggle } from './ThemeToggle';
 import { JitsLogoText } from './JitsLogoText';
+import { Button } from './ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
 
 interface NavigationProps {
   onNavigate: (page: string) => void;
@@ -12,7 +23,14 @@ interface NavigationProps {
 
 export function Navigation({ onNavigate, currentPage, onCartClick }: NavigationProps) {
   const { cartCount } = useCart();
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -63,6 +81,60 @@ export function Navigation({ onNavigate, currentPage, onCartClick }: NavigationP
             <div className="hidden md:block">
               <ThemeToggle />
             </div>
+
+            {/* User Menu */}
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="gap-2 rounded-full"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%)'
+                      }}
+                  >
+                    <div 
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm"
+                      style={{
+                        background: 'linear-gradient(135deg, var(--jits-pink) 0%, var(--jits-cyan) 100%)'
+                      }}
+                    >
+                      {user?.name.charAt(0).toUpperCase()}
+                    </div>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>
+                    <div className="flex flex-col space-y-1">
+                      <p>{user?.name}</p>
+                      <p className="text-xs text-muted-foreground">{user?.email}</p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => onNavigate('profile')}>
+                    <User className="mr-2 h-4 w-4" />
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => {
+                    logout();
+                    onNavigate('home');
+                  }}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button
+                onClick={() => onNavigate('login')}
+                  variant="outline"
+                  className="gap-2 rounded-full"
+              >
+                <User className="w-4 h-4" />
+                Sign In
+              </Button>
+            )}
 
             <button
               type='button'

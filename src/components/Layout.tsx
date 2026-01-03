@@ -14,7 +14,8 @@ export function Layout() {
       'home': '/',
       'shop': '/shop',
       'about': '/about',
-      'theme': '/theme'
+      'theme': '/theme',
+      'login': '/login'
     };
     navigate(routes[page] || '/');
   };
@@ -27,6 +28,7 @@ export function Layout() {
       case '/about': return 'about';
       case '/checkout': return 'checkout';
       case '/theme': return 'theme';
+      case '/login': return 'login';
       default: return 'home';
     }
   };
@@ -42,9 +44,9 @@ export function Layout() {
       <Outlet />
 
       {/* Footer */}
-      <footer className="border-t py-12 px-4 mt-20">
+      <footer className="border-t border-gray-800 py-12 px-4 mt-20">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8 justify-items-center">
             <div className="space-y-3">
               <h4>Shop</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
@@ -83,8 +85,8 @@ export function Layout() {
               </div>
             </div>
           </div>
-          <div className="border-t pt-8 text-center text-sm text-muted-foreground">
-            <p>© 2024 Jits. Super Cool. Fancy. Funky.</p>
+          <div className="border-t border-gray-800 pt-8 text-center text-sm text-muted-foreground">
+            <p>© 2024 Jits Apparel. Jas Clothing all the time</p>
           </div>
         </div>
       </footer>

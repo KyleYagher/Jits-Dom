@@ -1,6 +1,6 @@
 import './JitsLogoText.css';
 
-export function JitsLogoText({ scale = 1 }: { scale?: number }) {
+export function JitsLogoText({ text = 'JitS', scale = 1 }: { text?: string; scale?: number }) {
     return (
       <div
         className="jits-logo-text-wrapper"
@@ -18,7 +18,7 @@ export function JitsLogoText({ scale = 1 }: { scale?: number }) {
   
           <g>
             <text x="300" y="180" textAnchor="middle" fill="url(#textGradient)" className="jits-logo-text">
-              JitS
+              {text}
             </text>
           </g>
         </svg>
