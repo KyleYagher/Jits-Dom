@@ -65,13 +65,6 @@ export function UserProfile() {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <Button
-            variant="ghost"
-            onClick={() => navigate('/')}
-            className="mb-4"
-          >
-            ← Back to Home
-          </Button>
           
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-4">
@@ -94,15 +87,6 @@ export function UserProfile() {
                 </p>
               </div>
             </div>
-
-            <Button
-              variant="outline"
-              onClick={handleLogout}
-              className="gap-2"
-            >
-              <LogOut className="w-4 h-4" />
-              Sign Out
-            </Button>
           </div>
         </div>
 

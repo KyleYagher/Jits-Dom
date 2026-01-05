@@ -42,7 +42,7 @@ export function LoginPage() {
 
       if (result.success) {
         // Redirect to profile page after successful login
-        navigate('profile');
+        navigate('/profile');
       } else {
         setError(result.error || 'Login failed');
       }
